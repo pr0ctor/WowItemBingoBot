@@ -1,0 +1,10 @@
+{
+  "DatabaseConnectionString": "Server=127.0.0.1;Database=gearbingo;Uid=carl;Pwd=qwe123;",
+  "AdminDiscordRole": "942130038487265372",
+
+  "DiscordAppId": "1278256069579112449",
+  "DiscordAppToken": "MTI3ODI1NjA2OTU3OTExMjQ0OQ.GZsLnq.S4GTtVWROfg4jJNC_D2wBvfWhwPtrQTDvTSHRk",
+
+  "TeamGreenRole": "942129901371289652",
+  "TeamGreenLeadsRole": "942130038487265372"
+}
