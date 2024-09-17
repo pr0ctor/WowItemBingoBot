@@ -61,7 +61,7 @@ namespace DiscordBingoBot.Model
                 d.username as username, 
                 c.total_completions as totalcompletions, 
                 s.total_submissions as totalsubmissions,
-                rank() over (order by c.totalcompletions desc) as overallrank
+                rank() over (order by c.total_completions desc) as overallrank
             from discordusers d
             join (
                 select discorduser, count(id) as total_completions
@@ -73,7 +73,7 @@ namespace DiscordBingoBot.Model
                 from bingocardsubmissions
                 group by discorduser
             ) s on s.discorduser = d.snowflake
-            order by c.totalcompletions desc
+            order by c.total_completions desc
             limit 10
 ";
 

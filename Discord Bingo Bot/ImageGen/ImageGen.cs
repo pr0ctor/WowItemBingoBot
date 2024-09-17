@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.Fonts;
 using SixLabors.ImageSharp.Drawing.Processing;
-using SixLabors.ImageSharp.PixelFormats;
 using System.Reflection;
 using System.Numerics;
 
@@ -20,14 +19,14 @@ namespace DiscordBingoBot.ImageGen
 
         public static async Task<FileStream> GetExistingBingoCard(BingoCard bingoCard)
         {
-            var file = new FileStream($@"{EnvironmentVariables.BaseDirectoryPath}\images\computedcards\{bingoCard.Owner}\{bingoCard.SessionCode}.jpg", FileMode.Open);
+            var file = new FileStream($@"{EnvironmentVariables.BaseDirectoryPath}/images/computedcards/{bingoCard.Owner}/{bingoCard.SessionCode}.jpg", FileMode.Open);
 
             return file;
         }
 
         public static async Task<byte[]> GetExistingBingoCardAsByteArray(BingoCard bingoCard)
         {
-            using var file = new FileStream($@"{EnvironmentVariables.BaseDirectoryPath}\images\computedcards\{bingoCard.Owner}\{bingoCard.SessionCode}.jpg", FileMode.Open);
+            using var file = new FileStream($@"{EnvironmentVariables.BaseDirectoryPath}/images/computedcards/{bingoCard.Owner}/{bingoCard.SessionCode}.jpg", FileMode.Open);
             var streamLength = Convert.ToInt32(file.Length);
             var fileData = new byte[streamLength];
             file.Read(fileData, 0, streamLength);
@@ -54,7 +53,7 @@ namespace DiscordBingoBot.ImageGen
 
             baseImage.Mutate(o => o.DrawImage(bigxImage, new Point(bigxPoint.X, bigxPoint.Y), 1f));
 
-            var location = $@"{EnvironmentVariables.BaseDirectoryPath}\images\computedcards\{bingoCard.Owner}\{bingoCard.SessionCode}.jpg";
+            var location = $@"{EnvironmentVariables.BaseDirectoryPath}/images/computedcards/{bingoCard.Owner}/{bingoCard.SessionCode}.jpg";
 
             await baseImage.SaveAsJpegAsync(location);
 
@@ -114,9 +113,9 @@ namespace DiscordBingoBot.ImageGen
             };
             baseImage.Mutate(o => o.DrawText(userInfoOptions, $"{bingoCard.Owner}-{bingoCard.SessionCode}", Color.Black));
 
-            var finalPath = $@"{EnvironmentVariables.BaseDirectoryPath}\images\computedcards\{bingoCard.Owner}\{bingoCard.SessionCode}.jpg";
+            var finalPath = $@"{EnvironmentVariables.BaseDirectoryPath}/images/computedcards/{bingoCard.Owner}/{bingoCard.SessionCode}.jpg";
 
-            Directory.CreateDirectory($@"{EnvironmentVariables.BaseDirectoryPath}\images\computedcards\{bingoCard.Owner}\");
+            Directory.CreateDirectory($@"{EnvironmentVariables.BaseDirectoryPath}/images/computedcards/{bingoCard.Owner}/");
 
             await baseImage.SaveAsJpegAsync(finalPath);
 

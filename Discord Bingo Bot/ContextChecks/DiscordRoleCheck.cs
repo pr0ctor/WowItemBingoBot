@@ -15,14 +15,21 @@ namespace DiscordBingoBot.ContextChecks
         {
             var discordUser = new User(context.Member);
 
-            if (discordUser.CheckUserForRoleById(attribute.RoleId))
+            var validRoles = new List<string>
             {
-                return ValueTask.FromResult<string?>(null);
-            }
-            else
+                EnvironmentVariables.TeamGreenRole,
+                EnvironmentVariables.TeamGreenTrialRole
+            };
+
+            foreach (var role in validRoles)
             {
-                return ValueTask.FromResult<string?>(Messages.InvalidDiscordRoleAssigned);
+                if (discordUser.CheckUserForRoleById(role))
+                {
+                    return ValueTask.FromResult<string?>(null);
+                }
             }
+
+            return ValueTask.FromResult<string?>(Messages.InvalidDiscordRoleAssigned);
         }
     }
 }

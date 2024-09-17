@@ -1,9 +1,7 @@
 ﻿using DiscordBingoBot.BingoEngine;
 using DiscordBingoBot.Commands;
 using DiscordBingoBot.Model;
-using DSharpPlus.Commands.Trees;
 using Microsoft.Extensions.Configuration;
-using SixLabors.Fonts;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Text;
@@ -17,7 +15,7 @@ namespace DiscordBingoBot.Helpers
 {
     internal static class Helpers
     {
-        // No special characters, numbers, or whitespace but still allow characters with effects like ñ or å
+        // No special characters, numbers, or whitespace but still allow characters with diacritics like ñ or å
         //public static readonly string validWowCharacterNameRegex = @"[\d\s$&+,:;=?@#|'<>.^*()%!-]+";
         public static readonly string validWowCharacterNameRegex = @"\p{L}+";
 
@@ -50,13 +48,15 @@ namespace DiscordBingoBot.Helpers
             EnvironmentVariables.DiscordAppId = configBuilder[EnvironmentVariables.DiscordAppIdName] ?? "";
             EnvironmentVariables.DiscordAppToken = configBuilder[EnvironmentVariables.DiscordAppTokenName] ?? "";
             EnvironmentVariables.TeamGreenRole = configBuilder[EnvironmentVariables.TeamGreenRoleName] ?? "";
+            EnvironmentVariables.TeamGreenTrialRole = configBuilder[EnvironmentVariables.TeamGreenTrialRoleName] ?? "";
             EnvironmentVariables.TeamGreenLeadsRole = configBuilder[EnvironmentVariables.TeamGreenLeadsRoleName] ?? "";
+            EnvironmentVariables.NameSpreadsheetLink = configBuilder[EnvironmentVariables.NameSpreadsheetLinkName] ?? "";
 
             EnvironmentVariables.BaseDirectoryPath = Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)!;
 
             var fonts = new SixLabors.Fonts.FontCollection();
-            //EnvironmentVariables.BingoTextFont = fonts.Add($@"{EnvironmentVariables.BaseDirectoryPath}\font\RobotoMono-VariableFont_wght.ttf");
-            EnvironmentVariables.BingoTextFont = fonts.Add($@"{EnvironmentVariables.BaseDirectoryPath}\font\RubikMonoOne-Regular.ttf");
+            //EnvironmentVariables.BingoTextFont = fonts.Add($@"{EnvironmentVariables.BaseDirectoryPath}/font/RobotoMono-VariableFont_wght.ttf");
+            EnvironmentVariables.BingoTextFont = fonts.Add($@"{EnvironmentVariables.BaseDirectoryPath}/font/RubikMonoOne-Regular.ttf");
         }
 
         public static IEnumerable<Type> GenerateCommandRegistrationList()
@@ -64,7 +64,8 @@ namespace DiscordBingoBot.Helpers
             return [
                 typeof(RegisterCommands),
                 typeof(ViewCommands),
-                typeof(SubmitCommand)
+                typeof(SubmitCommand),
+                typeof(HelpCommands)
             ];
         }
 
@@ -75,23 +76,23 @@ namespace DiscordBingoBot.Helpers
             {
                 if (gearIconImages.ContainsKey(item.ItemImageName)) continue;
 
-                var fileBytes = File.ReadAllBytes(EnvironmentVariables.BaseDirectoryPath + $@"\images\icons\{item.ItemImageName}");
+                var fileBytes = File.ReadAllBytes(EnvironmentVariables.BaseDirectoryPath + $@"/images/icons/{item.ItemImageName}");
                 gearIconImages.Add(item.ItemImageName, fileBytes);
                 //Thread.Sleep(100);
             }
             EnvironmentVariables.GeatItemCacheForImageData = gearIconImages;
 
             var bingoCardImages = new Dictionary<string, byte[]>();
-            var bingoCardTemplateCount = Directory.GetFiles(EnvironmentVariables.BaseDirectoryPath + $@"\images\bingocards\").Count();
+            var bingoCardTemplateCount = Directory.GetFiles(EnvironmentVariables.BaseDirectoryPath + $@"/images/bingocards/").Count();
             foreach (var number in Enumerable.Range(0, bingoCardTemplateCount-1))
             {
-                var fileBytes = File.ReadAllBytes(EnvironmentVariables.BaseDirectoryPath + $@"\images\bingocards\{number}.jpg");
+                var fileBytes = File.ReadAllBytes(EnvironmentVariables.BaseDirectoryPath + $@"/images/bingocards/{number}.jpg");
 
                 bingoCardImages.Add($"{number}.jpg", fileBytes);
             }
             EnvironmentVariables.BingoCardBaseImageCache = bingoCardImages;
 
-            var bigXBytes = File.ReadAllBytes(EnvironmentVariables.BaseDirectoryPath + $@"\images\misc\bigx.png");
+            var bigXBytes = File.ReadAllBytes(EnvironmentVariables.BaseDirectoryPath + $@"/images/misc/bigx.png");
             EnvironmentVariables.BigXData = bigXBytes;
         }
 
@@ -104,7 +105,7 @@ namespace DiscordBingoBot.Helpers
             
             foreach (GearItem item in items)
             {
-                var location = EnvironmentVariables.BaseDirectoryPath + $@"\images\icons\{item.ItemImageName}";
+                var location = EnvironmentVariables.BaseDirectoryPath + $@"/images/icons/{item.ItemImageName}";
 
                 if (File.Exists(location)) continue;
 

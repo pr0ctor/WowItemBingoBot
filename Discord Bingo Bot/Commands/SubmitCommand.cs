@@ -17,6 +17,7 @@ using System.Net;
 using DiscordBingoBot.BingoEngine;
 using DiscordBingoBot.ImageGen;
 using DiscordBingoBot.ChoiceProviders;
+using DiscordBingoBot.ContextChecks;
 
 namespace DiscordBingoBot.Commands
 {
@@ -78,7 +79,7 @@ namespace DiscordBingoBot.Commands
 
             var submittedItemIsOnCard = listOfValidGearItems.Contains(gearItem.ItemId.ToString());
 
-            if(!submittedItemIsOnCard)
+            if (!submittedItemIsOnCard)
             {
                 await context.EditResponseAsync(Messages.SubmittedItemIsNotOnCard);
                 return;
@@ -88,7 +89,7 @@ namespace DiscordBingoBot.Commands
 
             // check to see if this item has already been submitted
 
-            if(currentSubmissions.Contains(gearItem.ItemId))
+            if (currentSubmissions.Contains(gearItem.ItemId))
             {
                 await context.EditResponseAsync(Messages.ItemAlreadySubmitted);
                 return;

@@ -216,6 +216,7 @@
     <None Remove="images\icons\spell_shadow_shadowmend.jpg" />
     <None Remove="images\misc\bigx.png" />
     <None Remove="settings.development.json" />
+    <None Remove="settings.production.json" />
     <None Remove="tessdata\eng.traineddata" />
   </ItemGroup>
 
@@ -822,6 +823,9 @@
     </Content>
     <Content Include="settings.development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="settings.production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

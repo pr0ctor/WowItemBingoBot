@@ -1,5 +1,4 @@
 ﻿using DiscordBingoBot.Model;
-using DiscordBingoBot.ContextChecks;
 using DSharpPlus.Commands;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using System.ComponentModel;
 using DSharpPlus.Commands.Processors.SlashCommands;
 using DiscordBingoBot.BingoEngine;
 using DSharpPlus.Entities;
+using DiscordBingoBot.ContextChecks;
 
 namespace DiscordBingoBot.Commands
 {

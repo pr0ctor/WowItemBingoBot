@@ -18,14 +18,18 @@ namespace DiscordBingoBot.Model
         public const string DiscordAppIdName = "DiscordAppId";
         public const string DiscordAppTokenName = "DiscordAppToken";
         public const string TeamGreenRoleName = "TeamGreenRole";
+        public const string TeamGreenTrialRoleName = "TeamGreenTrialRole";
         public const string TeamGreenLeadsRoleName = "TeamGreenLeadsRole";
+        public const string NameSpreadsheetLinkName = "NameSpreadsheetLink";
 
         public static string DatabaseConnectionString { get; set; }
         public static string AdminDiscordRole { get; set; }
         public static string DiscordAppId { get; set; }
         public static string DiscordAppToken { get; set; }
         public static string TeamGreenRole { get; set; }
+        public static string TeamGreenTrialRole { get; set; }
         public static string TeamGreenLeadsRole { get; set; }
+        public static string NameSpreadsheetLink { get; set; }
 
         public static string BaseDirectoryPath { get; set; }
 
@@ -53,7 +57,9 @@ namespace DiscordBingoBot.Model
                 DiscordAppIdName => DiscordAppId,
                 DiscordAppTokenName => DiscordAppToken,
                 TeamGreenRoleName => TeamGreenRole,
+                TeamGreenTrialRoleName => TeamGreenTrialRole,
                 TeamGreenLeadsRoleName => TeamGreenLeadsRole,
+                NameSpreadsheetLinkName => NameSpreadsheetLink,
                 _ => ""
             };
         }

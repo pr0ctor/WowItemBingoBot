@@ -1,6 +1,5 @@
-﻿using DiscordBingoBot.BingoEngine;
+﻿using DiscordBingoBot.ContextChecks;
 using DiscordBingoBot.Model;
-using DiscordBingoBot.ParameterChecks;
 using DSharpPlus.Commands;
 using DSharpPlus.Commands.Processors.SlashCommands;
 using DSharpPlus.Entities;
@@ -59,7 +58,9 @@ namespace DiscordBingoBot.Commands
 
             var tableHeader = "\t\tTop 10 Bingoers\n\nRank\tName\tCompletions\tSubmissions\n\n";
 
-            var parsedString = string.Join("\n", leaderboardResults.Select(t => t.ToString()));
+            var parsedString = (leaderboardResults.Count() > 0) 
+                ? string.Join("\n", leaderboardResults.Select(t => t.ToString()))
+                : Messages.NoRecordedRankings;
 
             var finalMessage = new DiscordMessageBuilder().WithContent(tableHeader + parsedString);
 

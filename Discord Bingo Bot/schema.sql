@@ -63,23 +63,40 @@ create table bingocardcompletions(
 );
 
 -- Load source data for wow gear items
+
+-- load command - mysql -u carl -p gearbingo < "D:\Projects\Visual Studio\DiscordBingo\Discord Bingo Bot\Discord Bingo Bot\schema.sql"
+
 --Mythic+ dungeons season 1
-load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/arakara.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
-load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/cityofthreads.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/arakara.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/cityofthreads.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
 --load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/grimbatol.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
 --load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/mistsoftirnascithe.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
 --load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/siegeofboralus.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
-load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/thedawnbreaker.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/thedawnbreaker.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
 --load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/thenecroticwake.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
-load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/thestonevault.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/thestonevault.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
 --End M+
 
---Other Dungeons
-load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/cinderbrew.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
-load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/darkflame.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
-load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/priory.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
-load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/rookery.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--M+ season 1 linux uris
 
+-- load command - mysql -u discordbot -p gearbingo < "/home/bingo/sourcedata/schema.sql"
+
+load data local infile '/home/bingo/sourcedata/arakara.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+load data local infile '/home/bingo/sourcedata/cityofthreads.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+load data local infile '/home/bingo/sourcedata/grimbatol.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+load data local infile '/home/bingo/sourcedata/mistsoftirnascithe.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+load data local infile '/home/bingo/sourcedata/siegeofboralus.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+load data local infile '/home/bingo/sourcedata/thedawnbreaker.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+load data local infile '/home/bingo/sourcedata/thenecroticwake.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+load data local infile '/home/bingo/sourcedata/thestonevault.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--end linux uris
+
+--Other Dungeons
+--load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/cinderbrew.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/darkflame.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/priory.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--load data local infile 'D:/Projects/Visual Studio/DiscordBingo/Discord Bingo Bot/Discord Bingo Bot/SourceData/rookery.csv' into table wowgear fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 lines (itemid, itemname, itemimageurl, itemimagename);
+--End other dungeons
 
 
 insert into wowcharacters(id, charactername) values(1, 'Me');

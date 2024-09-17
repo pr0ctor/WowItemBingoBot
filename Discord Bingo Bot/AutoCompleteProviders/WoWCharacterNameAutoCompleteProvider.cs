@@ -15,7 +15,7 @@ namespace DiscordBingoBot.AutoCompleteProviders
         {
             // Can only show 25 items at a time
             var items = (IReadOnlyDictionary<string, object>)EnvironmentVariables.WoWCharacterNameCache
-                .Where(g => g.StartsWith(context.UserInput, StringComparison.OrdinalIgnoreCase))
+                .Where(g => g.Contains(context.UserInput, StringComparison.OrdinalIgnoreCase))
                 .ToDictionary(g => g, g => (object)g.ToString())
                 .Take(25)
                 .ToDictionary()
