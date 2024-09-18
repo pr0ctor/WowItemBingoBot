@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DiscordBingoBot.Helpers
 {
-    internal static class Helpers
+    public static class Helpers
     {
         // No special characters, numbers, or whitespace but still allow characters with diacritics like ñ or å
         //public static readonly string validWowCharacterNameRegex = @"[\d\s$&+,:;=?@#|'<>.^*()%!-]+";
@@ -32,7 +32,7 @@ namespace DiscordBingoBot.Helpers
             await PopulateImageCaches();
         }
 
-        private static void BuildEnvironmentVariables()
+        public static void BuildEnvironmentVariables()
         {
             var configBuilder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())

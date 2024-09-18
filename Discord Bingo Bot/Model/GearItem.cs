@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DiscordBingoBot.Model
 {
-    internal class GearItem(int Id, int ItemId, string ItemName, string ItemImageUrl, string ItemImageName)
+    public class GearItem(int Id, int ItemId, string ItemName, string ItemImageUrl, string ItemImageName)
     {
         public int Id { get; } = Id;
         public int ItemId { get; } = ItemId;

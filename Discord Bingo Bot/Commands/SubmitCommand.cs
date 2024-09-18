@@ -18,6 +18,8 @@ using DiscordBingoBot.BingoEngine;
 using DiscordBingoBot.ImageGen;
 using DiscordBingoBot.ChoiceProviders;
 using DiscordBingoBot.ContextChecks;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 
 namespace DiscordBingoBot.Commands
 {
@@ -102,9 +104,11 @@ namespace DiscordBingoBot.Commands
             //using var filedataStream = await httpClient.GetStreamAsync(fileUrl);
             var filedataStream = await httpClient.GetByteArrayAsync(fileUrl);
 
+            var modifiedFile = ProcessUploadedImage(filedataStream);
+
             // parse uploaded image
 
-            var imageText = OcrWorker.ReadTextFromImage(filedataStream);
+            var imageText = OcrWorker.ReadTextFromImage(modifiedFile);
 
             var foundItemAward = OcrWorker.FoundMatchingGearAquisition(imageText, (characterIsCurrentUser) ? "You" : characterName, gearItem);
 
@@ -153,5 +157,19 @@ namespace DiscordBingoBot.Commands
             bingoCardData.Dispose();
         }
 
+
+        private byte[] ProcessUploadedImage(byte[] image)
+        {
+
+            var ratio = 300 / 72;
+            using var picture = Image.Load(image);
+
+            picture.Mutate(o => o.Resize(picture.Width * ratio, picture.Height * ratio, KnownResamplers.Lanczos8));
+
+            using var newstream = new MemoryStream();
+            picture.SaveAsPng(newstream);
+
+            return newstream.ToArray();
+        }
     }
 }

@@ -10,21 +10,20 @@ using Tesseract;
 
 namespace DiscordBingoBot.OCR
 {
-    internal static class OcrWorker
+    public static class OcrWorker
     {
 
         private static int LevenshteinMaxErrors = 6;
 
         public static string ReadTextFromImage(byte[] imageStream)
         {
-            var engine = new TesseractEngine(EnvironmentVariables.BaseDirectoryPath + $@"/tessdata/", "eng");
+            using var engine = new TesseractEngine(EnvironmentVariables.BaseDirectoryPath + $@"/tessdata/", "eng");
 
-            var image = Pix.LoadFromMemory(imageStream);
+            using var image = Pix.LoadFromMemory(imageStream);
 
             var engineResult = engine.Process(image);
-#if DEBUG
+
             Console.WriteLine(engineResult.GetText());
-#endif
 
             return engineResult.GetText();
         }
