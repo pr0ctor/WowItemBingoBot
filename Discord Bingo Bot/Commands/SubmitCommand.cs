@@ -99,24 +99,24 @@ namespace DiscordBingoBot.Commands
 
             // download image from the message
 
-            using var httpClient = new HttpClient();
+            //using var httpClient = new HttpClient();
 
             //using var filedataStream = await httpClient.GetStreamAsync(fileUrl);
-            var filedataStream = await httpClient.GetByteArrayAsync(fileUrl);
+            //var filedataStream = await httpClient.GetByteArrayAsync(fileUrl);
 
-            var modifiedFile = ProcessUploadedImage(filedataStream);
+            //var modifiedFile = ProcessUploadedImage(filedataStream);
 
             // parse uploaded image
 
-            var imageText = OcrWorker.ReadTextFromImage(modifiedFile);
+            //var imageText = OcrWorker.ReadTextFromImage(modifiedFile);
 
-            var foundItemAward = OcrWorker.FoundMatchingGearAquisition(imageText, (characterIsCurrentUser) ? "You" : characterName, gearItem);
+            //var foundItemAward = OcrWorker.FoundMatchingGearAquisition(imageText, (characterIsCurrentUser) ? "You" : characterName, gearItem);
 
-            if(!foundItemAward)
+            /*if(!foundItemAward)
             {
                 await context.EditResponseAsync(Messages.ItemNotFoundInScreenshot);
                 return;
-            }
+            }*/
 
             // updated board state
 
