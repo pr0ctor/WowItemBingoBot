@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /Discord Bingo Bot/settings.production.json
 /Discord Bingo Bot/settings.development.json
+/BingoTests/settings.development.json
